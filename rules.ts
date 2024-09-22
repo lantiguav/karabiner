@@ -255,8 +255,12 @@ const rules: KarabinerRules[] = [
       },
       // Magicmove via homerow.app
       m: {
-        to: [{ key_code: "f", modifiers: ["right_control"] }],
+        to: [{ key_code: "spacebar", modifiers: ["right_shift", "right_command"] }],
         // TODO: Trigger Vim Easymotion when VSCode is focused
+      },
+      // Magic search via homerow.app
+      n: {
+        to: [{ key_code: "semicolon", modifiers: ["right_shift", "right_command"]}],
       },
       // Scroll mode via homerow.app
       s: {
