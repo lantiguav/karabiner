@@ -1,6 +1,7 @@
 import fs from "fs";
 import { KarabinerRules } from "./types";
 import { createHyperSubLayers, app, open, rectangle, shell } from "./utils";
+import spanishKeymaps from "./spanish";
 
 const rules: KarabinerRules[] = [
   // Define the Hyper key itself
@@ -38,23 +39,6 @@ const rules: KarabinerRules[] = [
         ],
         type: "basic",
       },
-      {
-        description: "Change right command to left control.",
-        from: {
-          key_code: "right_command",
-          modifiers: {
-            optional: [
-              "any"
-            ]
-          }
-        },
-        to: [
-          {
-            key_code: "left_control",
-          }
-        ],
-        type: "basic"
-      }
       //      {
       //        type: "basic",
       //        description: "Disable CMD + Tab to force Hyper Key usage",
@@ -72,6 +56,29 @@ const rules: KarabinerRules[] = [
       //      },
     ],
   },
+  {
+    description: "Map right_command to left_control",
+    manipulators: [
+      {
+        description: "Change right command to left control.",
+        from: {
+          key_code: "right_command",
+          modifiers: {
+            optional: [
+              "any"
+            ]
+          }
+        },
+        to: [
+          {
+            key_code: "left_control",
+          }
+        ],
+        type: "basic"
+      }
+    ],
+  },
+  ...spanishKeymaps,
   ...createHyperSubLayers({
     spacebar: {
       description: "Control key",
