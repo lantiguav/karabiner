@@ -38,6 +38,23 @@ const rules: KarabinerRules[] = [
         ],
         type: "basic",
       },
+      {
+        description: "Change right command to left control.",
+        from: {
+          key_code: "right_command",
+          modifiers: {
+            optional: [
+              "any"
+            ]
+          }
+        },
+        to: [
+          {
+            key_code: "left_control",
+          }
+        ],
+        type: "basic"
+      }
       //      {
       //        type: "basic",
       //        description: "Disable CMD + Tab to force Hyper Key usage",
@@ -56,9 +73,14 @@ const rules: KarabinerRules[] = [
     ],
   },
   ...createHyperSubLayers({
-    spacebar: open(
-      "raycast://extensions/stellate/mxstbr-commands/create-notion-todo"
-    ),
+    spacebar: {
+      description: "Control key",
+      to: [
+        {
+          key_code: "left_control"
+        },
+      ],
+    },
     // b = "B"rowse
     b: {
       t: open("https://twitter.com"),
@@ -260,7 +282,7 @@ const rules: KarabinerRules[] = [
       },
       // Magic search via homerow.app
       n: {
-        to: [{ key_code: "semicolon", modifiers: ["right_shift", "right_command"]}],
+        to: [{ key_code: "semicolon", modifiers: ["right_shift", "right_command"] }],
       },
       // Scroll mode via homerow.app
       s: {
@@ -315,30 +337,6 @@ const rules: KarabinerRules[] = [
       ),
     },
   }),
-  {
-    description: "Change Backspace to Spacebar when Minecraft is focused",
-    manipulators: [
-      {
-        type: "basic",
-        from: {
-          key_code: "delete_or_backspace",
-        },
-        to: [
-          {
-            key_code: "spacebar",
-          },
-        ],
-        conditions: [
-          {
-            type: "frontmost_application_if",
-            file_paths: [
-              "^/Users/mxstbr/Library/Application Support/minecraft/runtime/java-runtime-gamma/mac-os-arm64/java-runtime-gamma/jre.bundle/Contents/Home/bin/java$",
-            ],
-          },
-        ],
-      },
-    ],
-  },
 ];
 
 fs.writeFileSync(
